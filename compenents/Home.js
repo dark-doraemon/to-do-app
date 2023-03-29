@@ -16,7 +16,7 @@ let Drawer = createDrawerNavigator();
 
 
 
-export default function App() {
+export function App() {
     const [isLoading,setIsLoading] = useState(true);
     const [products,setProducts] = useState([]);
     const [keyword,setKeyword] = useState('');
