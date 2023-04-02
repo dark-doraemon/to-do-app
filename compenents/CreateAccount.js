@@ -3,7 +3,6 @@ import {useState} from 'react'
 import {getAuth,createUserWithEmailAndPassword} from 'firebase/auth';
 import {app} from '../config/firebase'
 export const CreateAccount = ({navigation}) =>{
-
     const [gmail,setGmail]  = useState('');
     const [password,setPassword] = useState('');
     const [confirmPassword,setConfirmPassword] = useState('');
@@ -13,13 +12,13 @@ export const CreateAccount = ({navigation}) =>{
         if(password != confirmPassword) alert('Mật khẩu nhập lại không đúng');
 
         const auth = getAuth(app); //lấy đối tượng Auth của firebase Authentication thông qua app
-        createUserWithEmailAndPassword(auth,gmail,password)// tạo tài khoản mới với gmail và password
+        createUserWithEmailAndPassword(auth,gmail,password)// tạo tài khoản mới với gmail và password và lưu vào firebas thông qua auth
         .then((userCredential) =>{
-            const user = userCredential.user;
-            console.log(user.email);
+            const username = userCredential.user;
+            console.log("Signed up with : " + username.email);
         })
         .catch(error =>{
-            alert(error.message + " " + error.code);
+            alert(error.code);
         })
     }
 

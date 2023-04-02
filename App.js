@@ -6,7 +6,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs'
 import {createDrawerNavigator} from '@react-navigation/drawer'
-import {Home} from './compenents/Home';
+import {Home} from './compenents/Products';
 import {Details} from './compenents/Details';
 import {Login} from './compenents/Login';
 import {CreateAccount} from './compenents/CreateAccount';

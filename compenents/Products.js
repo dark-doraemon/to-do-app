@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View ,Button,Image ,TouchableOpacity,TextInput} from 'react-native';
+import { StyleSheet, Text, View ,Button,Image ,TouchableOpacity,TextInput,SafeAreaView} from 'react-native';
 import { useEffect, useState } from 'react';
 import * as React from 'react';
 import { FlatList } from 'react-native-gesture-handler';
@@ -53,11 +53,15 @@ export function Home({ navigation }) {
 
 
 return (
-   <View style = {styles.container }>
-        <View >
+   <SafeAreaView style = {styles.container }>
+        <SafeAreaView >
             <TextInput value={keyword} placeholder='Search' style={{height : 50}} onChangeText={text => setKeyword(text)}></TextInput>
             <Button title='Search' onPress={handleSearch} />
+            <View>
+            <Button title='Sign out' onPress={() =>navigation.navigate('Login')}/>
+
         </View>
+        </SafeAreaView>
 
         {isLoading ? (<Text>Đang load dữ liệu</Text>) : (
             <View>
@@ -67,7 +71,9 @@ return (
                 />
             </View>
         )}
-   </View>
+    
+        
+   </SafeAreaView >
     
 );
 }
@@ -76,5 +82,6 @@ const styles = StyleSheet.create({
 container: {
     flex: 1,
     backgroundColor: '#fff',
+    marginTop : 30
 },
 });

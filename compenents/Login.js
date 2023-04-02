@@ -1,27 +1,31 @@
 import * as React from 'react';
 import {Text,View,StyleSheet,Button,TouchableOpacity,TextInput, ImageBackground} from 'react-native'
 import { useState, useEffect} from 'react';
-import {getAuth,createUserWithEmailAndPassword,signInWithEmailAndPassword} from 'firebase/auth' 
-import {} from '../config/firebase'
+import {getAuth,signInWithEmailAndPassword} from 'firebase/auth'
+import {app} from '../config/firebase'
 export const Login = ({navigation}) =>{
-    const [userName,setUserName] = useState('');
+    const [gmail,setgmail] = useState('');
     const [password,setPassword] = useState('');
 
-    const handleSignUp = () => {
-        auth
-        .createUserWithEmailAndPassword(userName,password)
-         
-    }
-
-
-    const handleLogin = () =>
-    {
-        if(userName == '' || password == '')
+    const handleSignIn = () => {
+        if(gmail == '' || password == '')
         {
             alert("Tài khoản hoặc mật khẩu không được để trống");
         }
-        
+        const auth = getAuth(auth); //lấy đối tượng Auth của firebase Authentication thông qua app
+        signInWithEmailAndPassword(auth,gmail,password)//kiểm tra gmail và password trong firebase thông qua auth
+        .then((userCredential) =>{
+            const username = userCredential.user;
+            console.log("Signed in with : " + username.email);
+            navigation.navigate('Products');
+        })
+        .catch(error =>{
+            console.log(error.code);
+        })
     }
+
+
+   
 
     return(
         <View>
@@ -33,14 +37,14 @@ export const Login = ({navigation}) =>{
 
                 <View style = {styles.input}>
                     <TextInput 
-                    onChangeText={text => setUserName(text)} 
+                    onChangeText={text => setgmail(text)} 
                     style = {styles.ip} placeholder='Tên đăng nhập'></TextInput>
 
                     <TextInput 
                     secureTextEntry
                     onChangeText={text => setPassword(text)} 
                     style = {styles.ip} placeholder='Mật khẩu'></TextInput>
-                    <TouchableOpacity style = {styles.login} onPress={handleLogin}>
+                    <TouchableOpacity style = {styles.login} onPress={handleSignIn}>
                         <Text style = {{fontSize : 30}}>Login</Text>
                     </TouchableOpacity>
 
