@@ -8,10 +8,10 @@ export const Login = ({navigation}) =>{
     const [password,setPassword] = useState('');
 
     const handleSignIn = () => {
-        if(gmail == '' || password == '')
-        {
-            alert("Tài khoản hoặc mật khẩu không được để trống");
-        }
+        // if(gmail == '' || password == '')
+        // {
+        //     alert("Tài khoản hoặc mật khẩu không được để trống");
+        // }
         const auth = getAuth(auth); //lấy đối tượng Auth của firebase Authentication thông qua app
         signInWithEmailAndPassword(auth,gmail,password)//kiểm tra gmail và password trong firebase thông qua auth
         .then((userCredential) =>{
