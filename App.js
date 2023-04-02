@@ -7,22 +7,22 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs'
 import {createDrawerNavigator} from '@react-navigation/drawer'
 import {Home} from './compenents/Home';
-import {Details} from './compenents/Details'
-
-let Stack =createNativeStackNavigator();
-let Tab = createBottomTabNavigator();
-let Drawer = createDrawerNavigator();
-
+import {Details} from './compenents/Details';
+import {Login} from './compenents/Login';
+import {CreateAccount} from './compenents/CreateAccount';
+let Stack = createNativeStackNavigator();
 
 export default function App() {
 return (
     <View style={styles.container}>
         <NavigationContainer>
-            <Stack.Navigator>
+            <Stack.Navigator screenOptions={{headerShown : false}}>
+                <Stack.Screen name = 'Login' component={Login}/>
                 <Stack.Screen name = "Products" component ={Home} />
                 <Stack.Screen name = "Details" component={Details} />
+                <Stack.Screen name = "CreateAccount" component={CreateAccount} />
             </Stack.Navigator>
-        </NavigationContainer>
+            </NavigationContainer>
   </View>
     );
 }
