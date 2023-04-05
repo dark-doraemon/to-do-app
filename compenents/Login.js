@@ -1,31 +1,26 @@
 import * as React from 'react';
-import {Text,View,StyleSheet,Button,TouchableOpacity,TextInput, ImageBackground} from 'react-native'
+import {Text,View,StyleSheet,Button,TouchableOpacity,TextInput, ImageBackground, Alert} from 'react-native'
 import { useState, useEffect} from 'react';
 import {getAuth,signInWithEmailAndPassword} from 'firebase/auth'
 import {app} from '../config/firebase'
 export const Login = ({navigation}) =>{
-    const [gmail,setgmail] = useState('');
+    const [gmail,setGmail] = useState('');
     const [password,setPassword] = useState('');
 
     const handleSignIn = () => {
-        // if(gmail == '' || password == '')
-        // {
-        //     alert("Tài khoản hoặc mật khẩu không được để trống");
-        // }
         const auth = getAuth(auth); //lấy đối tượng Auth của firebase Authentication thông qua app
         signInWithEmailAndPassword(auth,gmail,password)//kiểm tra gmail và password trong firebase thông qua auth
         .then((userCredential) =>{
             const username = userCredential.user;
             console.log("Signed in with : " + username.email);
-            navigation.navigate('Products');
+            setPassword('');
+            navigation.navigate('ToDoList',[gmail]);
         })
         .catch(error =>{
-            console.log(error.code);
+            alert("Tài khoản sai hoặc chưa đăng kí" + "\n" + "Mã lỗi: " + error.code);
+            console.log("Mã lỗi: " + error.code);
         })
     }
-
-
-   
 
     return(
         <View>
@@ -37,10 +32,12 @@ export const Login = ({navigation}) =>{
 
                 <View style = {styles.input}>
                     <TextInput 
-                    onChangeText={text => setgmail(text)} 
+                    value = {gmail}
+                    onChangeText={text => setGmail(text)} 
                     style = {styles.ip} placeholder='Tên đăng nhập'></TextInput>
 
                     <TextInput 
+                    value={password}
                     secureTextEntry
                     onChangeText={text => setPassword(text)} 
                     style = {styles.ip} placeholder='Mật khẩu'></TextInput>

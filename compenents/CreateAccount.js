@@ -16,6 +16,7 @@ export const CreateAccount = ({navigation}) =>{
         .then((userCredential) =>{
             const username = userCredential.user;
             console.log("Signed up with : " + username.email);
+            alert('Tài khoản tạo thành công');
         })
         .catch(error =>{
             alert(error.code);

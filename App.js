@@ -10,14 +10,21 @@ import {Home} from './compenents/Products';
 import {Details} from './compenents/Details';
 import {Login} from './compenents/Login';
 import {CreateAccount} from './compenents/CreateAccount';
+import {ToDoList} from './compenents/ToDoList';
 let Stack = createNativeStackNavigator();
 
 export default function App() {
+
+    const handleAdd = () =>{
+
+    }
+
 return (
     <View style={styles.container}>
         <NavigationContainer>
-            <Stack.Navigator screenOptions={{headerShown : false}}>
+            <Stack.Navigator initialRouteName= "ToDoList" screenOptions={{headerShown : false}}>
                 <Stack.Screen name = 'Login' component={Login}/>
+                <Stack.Screen name = "ToDoList" component={ToDoList} />
                 <Stack.Screen name = "Products" component ={Home} />
                 <Stack.Screen name = "Details" component={Details} />
                 <Stack.Screen name = "CreateAccount" component={CreateAccount} />
