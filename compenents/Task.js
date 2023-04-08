@@ -3,26 +3,35 @@ import React, { useState } from 'react'
 import CheckBox from 'react-native-check-box'
 export const Task = (props) => {
 
-    const {number} = props;
+    //tất cả các thuộc tính của Task sẽ được gán trong props
+
+    const {number} = props; //lấy thuộc tính number trong props
+    //xử lý nếu là số chắn thì màu  ... lẻ là màu ...
     const numberText = number < 10 ? `0${number}` : number;
     const numberBG = number % 2 == 0 ? (styles.even) : (styles.odd);
+
     return (
         <View>
             <View style = {styles.item}>
-                
+                                
+                {/* checkbox */}
                 <View style = {{marginRight : 10}}>
                     <CheckBox 
-                    isChecked = {props.isChecked}
+                    // thuộc tính của checkbox được lấy trong props 
+                    isChecked = {props.isChecked} 
                     onClick={props.onClick}
                     />
                 </View>
-
+                
+                {/* Phần số thứ tự */}
                 <View style = {[styles.number,numberBG]}><Text>{numberText}</Text></View>
 
+                {/* Phần nội dung */}
                 <View style = {styles.content}>
                     <Text style = {{fontSize : 20}}>{props.content}</Text>
                 </View>
                 
+                {/* Thùng rác */}
                 <View style = {styles.delete}>
                     <TouchableOpacity
                     onPress={props.onDeleteTask}
@@ -47,13 +56,15 @@ const styles = StyleSheet.create({
         paddingHorizontal : 10,
         borderRadius : 15,
     },
+    //nếu số thứ tự của công việc là chắn thì số thứ tự đó có màu #55f253
     even : {
         backgroundColor : '#55f253'
     },
-
+    //nếu số thứ tự của công việc là lẻ thì số thứ tự đó có màu #48cfef
     odd : {
          backgroundColor : '#48cfef'
     },
+    //Style cho số thứ tự
     number : {
         width : 35, 
         height : 35,
@@ -62,11 +73,11 @@ const styles = StyleSheet.create({
         marginRight : 10,
         borderRadius : 10
     },
-
+    //style cho nội dung công việc
     content : {
         marginLeft : 10
     },
-
+    //style cho nút xóa công việc
     delete : {
         flex : 1,
         alignItems : 'flex-end'

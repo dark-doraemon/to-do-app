@@ -1,13 +1,7 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View ,Button,Image ,TouchableOpacity,TextInput} from 'react-native';
-import { useEffect, useState } from 'react';
+import { StyleSheet, View } from 'react-native';
 import * as React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import {createBottomTabNavigator} from '@react-navigation/bottom-tabs'
-import {createDrawerNavigator} from '@react-navigation/drawer'
-import {Home} from './compenents/Products';
-import {Details} from './compenents/Details';
 import {Login} from './compenents/Login';
 import {CreateAccount} from './compenents/CreateAccount';
 import {ToDoList} from './compenents/ToDoList';
@@ -15,18 +9,14 @@ let Stack = createNativeStackNavigator();
 
 export default function App() {
 
-    const handleAdd = () =>{
-
-    }
-
+    
 return (
     <View style={styles.container}>
         <NavigationContainer>
-            <Stack.Navigator initialRouteName= "ToDoList" screenOptions={{headerShown : false}}>
+            {/* initialRouteName màn hình hiển thị đầu tiên */}
+            <Stack.Navigator initialRouteName= "Login" screenOptions={{headerShown : false}}>
                 <Stack.Screen name = 'Login' component={Login}/>
                 <Stack.Screen name = "ToDoList" component={ToDoList} />
-                <Stack.Screen name = "Products" component ={Home} />
-                <Stack.Screen name = "Details" component={Details} />
                 <Stack.Screen name = "CreateAccount" component={CreateAccount} />
             </Stack.Navigator>
             </NavigationContainer>
